@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/11.0"
+            fx:controller="org.courier.controllers.CartPageController"
+            styleClass="cart-page" stylesheets="/styles/CartPage.css">
+
+    <!-- Header -->
+    <top>
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, lightblue, steelblue);">
+            <Label text="Your Shopping Cart" style="-fx-font-family: 'Arial'; -fx-font-size: 32; -fx-font-weight: bold;" textFill="white"/>
+            <Label text="Review your items and complete your purchase" style="-fx-font-family: 'Arial'; -fx-font-size: 18; -fx-font-weight: bold;" textFill="white"/>
+        </VBox>
+    </top>
+
+    <!-- Navigation on the Left -->
+    <left>
+        <VBox fx:id="navigation" spacing="10" styleClass="nav-panel" style="-fx-padding: 20;" >
+            <Button text="Home" fx:id="homeButton" onAction="#handleHomeNavigation" styleClass="main-button"/>
+            <Button text="Go to Dashboard" fx:id="trackOrdersButton"  onAction="#handleDashboardNavigation" styleClass="main-button"/>
+            <Button text="Products" fx:id="productsButton" onAction="#handleProductNavigation" styleClass="main-button"/>
+            <Button text="Exit App" fx:id="btnExit" style="-fx-background-color: #e91e63" styleClass="main-button" onAction="#handleExit" />
+        </VBox>
+    </left>
+
+
+    <!-- Center: Cart Items -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-padding: 15; -fx-background-color: linear-gradient(to bottom, lightblue, steelblue);">
+            <VBox fx:id="cartItemsContainer" spacing="15" styleClass="cart-items-container" prefWidth="600">
+                <!-- Cart Items will be dynamically loaded here -->
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- Bottom: Payment Section -->
+    <bottom>
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, lightblue, steelblue);">
+            <HBox spacing="15" alignment="CENTER_RIGHT" style="-fx-padding: 10;">
+                <Label text="Total Price: $" fx:id="totalPriceLabel" style="-fx-font-family: 'Arial'; -fx-font-size: 32; -fx-font-weight: bold;" textFill="darkgreen"/>
+                <Button text="Pay Now" fx:id="payNowButton" onAction="#handlePayNow"
+                        style="-fx-font-size: 16; -fx-background-color: #0073e6; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

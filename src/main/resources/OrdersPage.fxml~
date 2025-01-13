@@ -1,0 +1,27 @@
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.courier.controllers.OrdersPageController"
+            style="-fx-background-color: linear-gradient(to bottom, #3a7bd5, #3a6073);" stylesheets="/styles/OrdersPage.css">
+    <center>
+        <VBox alignment="CENTER" spacing="20" style="-fx-padding: 30;">
+            <!-- Page Title -->
+            <Label fx:id="ordersLabel" style="-fx-font-size: 26; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+            <!-- Orders ListView -->
+            <ListView fx:id="ordersListView" prefHeight="400.0" prefWidth="400.0"
+                      style="-fx-background-color: #f9f9f9; -fx-border-radius: 10; -fx-border-color: #ffffff;
+                             -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5);
+                             -fx-background-radius: 10;" />
+
+            <!-- Back Button -->
+            <Button text="Back to Dashboard" prefWidth="200.0" prefHeight="40.0"
+                    style="-fx-background-color: #ffffff; -fx-border-radius: 20; -fx-background-radius: 20;
+                           -fx-text-fill: #3a7bd5; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5);"
+                    onAction="#handleBackToDashboard" />
+        </VBox>
+    </center>
+</BorderPane>

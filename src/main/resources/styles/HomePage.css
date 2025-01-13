@@ -1,0 +1,73 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #4facfe, #00f2fe);
+    -fx-padding: 10;
+    -fx-min-width: 900px;
+        -fx-min-height: 700px;
+        -fx-pref-width: 900px;
+        -fx-pref-height: 700px;
+}
+
+.main-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.subtext {
+    -fx-font-size: 16px;
+    -fx-text-fill: #f0f0f0;
+}
+
+.nav-panel {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-padding: 15;
+    -fx-border-color: lightgray;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-spacing: 10;
+}
+
+.main-button {
+    -fx-font-size: 14px;
+    -fx-background-color: #0073e6;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-pref-width: 200px;
+        -fx-max-width: 200px;
+        -fx-min-width: 200px;
+
+}
+
+.exit-button {
+    -fx-font-size: 14px;
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-pref-width: 200px;
+            -fx-max-width: 200px;
+            -fx-min-width: 200px;
+ }
+
+.exit-button:hover {
+    -fx-background-color: #d32f2f;
+
+}
+
+.main-button:hover {
+    -fx-background-color: #005bb5;
+}
+
+#statusBar {
+    -fx-background-color: #333333;
+    -fx-padding: 5;
+}
+
+#statusLabel {
+    -fx-text-fill: white;
+}

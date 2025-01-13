@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/11.0"
+            fx:id="root" fx:controller="org.courier.controllers.ProductPageController"
+            styleClass="product-page" stylesheets="/styles/ProductsPage.css">
+
+    <!-- Header -->
+    <top>
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom, lightblue, steelblue);">
+            <Label text="Browse Our Products" style="-fx-font-family: 'Arial'; -fx-font-size: 30; -fx-font-weight: bold;" textFill="white"/>
+            <Label text="Find the perfect products for you!" style="-fx-font-family: 'Arial'; -fx-font-size: 16; -fx-font-weight: bold;" textFill="white"/>
+        </VBox>
+    </top>
+
+    <!-- Navigation on the Left -->
+    <left>
+        <VBox fx:id="navigation" spacing="10" styleClass="nav-panel" style="-fx-padding: 20;" >
+            <Button text="Home" fx:id="homeButton" onAction="#handleHomeNavigation" styleClass="main-button"/>
+            <Button text="Go to Dashboard" fx:id="trackOrdersButton"  onAction="#handleDashboardNavigation" styleClass="main-button"/>
+            <Button text="Exit App" fx:id="btnExit" styleClass="button-exit" onAction="#handleExit" />
+        </VBox>
+    </left>
+
+    <!-- Product Grid -->
+    <center>
+        <ScrollPane style="-fx-padding: 10;" fitToWidth="true">
+            <TilePane fx:id="productGrid" hgap="20" vgap="20" alignment="CENTER" styleClass="tile-pane">
+                <!-- Product Cards will be dynamically loaded here -->
+            </TilePane>
+        </ScrollPane>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-padding: 20; -fx-background-color: linear-gradient(to right, lightblue, steelblue);">
+            <Button text="Proceed to Checkout" fx:id="checkoutButton" onAction="#handleProceedToCheckout"
+                    style="-fx-font-size: 16; -fx-background-color: #0073e6; -fx-text-fill: white; -fx-font-weight: bold;"
+                    />
+        </HBox>
+    </bottom>
+</BorderPane>

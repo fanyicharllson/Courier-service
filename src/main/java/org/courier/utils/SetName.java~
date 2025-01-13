@@ -1,0 +1,4 @@
+package org.courier.utils;
+
+public class SetName {
+}

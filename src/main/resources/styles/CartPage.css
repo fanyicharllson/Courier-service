@@ -1,0 +1,115 @@
+/* General Styles for the Cart Page */
+.cart-page {
+    -fx-font-family: "Arial";
+    -fx-background-color: #f4f4f4; /* Light gray background for the entire page */
+}
+
+/* Header Section */
+.cart-page .header {
+    -fx-background-color: linear-gradient(to right, #FF7F50, #FF4500);
+    -fx-padding: 20;
+    -fx-alignment: center;
+}
+
+.cart-page .header Label {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+
+/* Cart Items Container */
+.cart-items-container {
+    -fx-spacing: 15;
+    -fx-padding: 20;
+}
+
+/* Individual Cart Item Row */
+.cart-items-container > HBox {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-spacing: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 5);
+}
+
+/* Product Image Styling */
+.cart-items-container ImageView {
+    -fx-fit-width: 80;
+    -fx-fit-height: 80;
+    -fx-background-radius: 10;
+}
+
+/* Product Details Styling */
+.cart-items-container .details Label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333; /* Darker text color for better readability */
+}
+
+/* Action Buttons in Cart Rows */
+.cart-items-container Button {
+    -fx-background-color: #FF4500;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.cart-items-container Button:hover {
+    -fx-background-color: #FF6347; /* Slightly lighter orange on hover */
+}
+
+/* Payment Section */
+.cart-page .bottom {
+    -fx-background-color: linear-gradient(to right, lightblue, steelblue);
+    -fx-padding: 20;
+}
+
+.cart-page .bottom Label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: darkgreen;
+}
+
+.cart-page .bottom Button {
+    -fx-font-size: 16px;
+    -fx-background-color: #0073e6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.cart-page .bottom Button:hover {
+    -fx-background-color: #005bb5; /* Darker blue on hover */
+}
+
+/* ScrollPane Styling */
+ScrollPane {
+    -fx-padding: 10;
+    -fx-background: transparent;
+}
+
+ScrollPane .viewport {
+    -fx-background-color: transparent;
+}
+
+/*Left bar Styling*/
+.main-button {
+    -fx-font-size: 14px;
+    -fx-background-color: #0073e6;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-pref-width: 200px;
+        -fx-max-width: 200px;
+        -fx-min-width: 200px;
+
+}
+
+.main-button:hover {
+    -fx-background-color: #005bb5; /* Darker blue on hover */
+}

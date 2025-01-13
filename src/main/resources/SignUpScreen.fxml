@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Label?>
+
+<BorderPane xmlns="http://javafx.com/javafx" styleClass="root" stylesheets="/styles/style.css" xmlns:fx="http://javafx.com/fxml" style="-fx-padding: 20;" fx:controller="org.courier.controllers.SignUpController">
+
+    <!-- Center Section for Form -->
+    <center>
+        <VBox alignment="CENTER" spacing="20" style="-fx-padding: 50px;">
+
+            <!-- Title -->
+            <Text text="Create Your Courier Account"
+                  style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-fill: #0078D7;" />
+
+            <!-- Form Section -->
+            <GridPane hgap="10" vgap="15" alignment="CENTER">
+
+                <!-- Email Field -->
+                <Label text="Email:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <TextField fx:id="txtEmail" promptText="Enter Email"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"
+                           style="-fx-font-size: 16px; -fx-pref-width: 350px;" />
+
+                <!-- Username Field -->
+                <Label text="Username:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <TextField fx:id="txtUsername" promptText="Enter Username"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1"
+                           style="-fx-font-size: 16px; -fx-pref-width: 350px;" />
+
+                <!-- Password Field -->
+                <Label text="Password:" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <PasswordField fx:id="txtPassword" promptText="Enter Password"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1"
+                               style="-fx-font-size: 16px; -fx-pref-width: 350px;" />
+
+                <!-- Confirm Password Field -->
+                <Label text="Confirm Password:" GridPane.rowIndex="3" GridPane.columnIndex="0"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <PasswordField fx:id="txtConfirmPassword" promptText="Confirm Password"
+                               GridPane.rowIndex="3" GridPane.columnIndex="1"
+                               style="-fx-font-size: 16px; -fx-pref-width: 350px;" />
+            </GridPane>
+
+            <!-- Buttons Section -->
+            <VBox spacing="10" alignment="CENTER">
+                <Button fx:id="btnSignUp" text="Sign Up"
+                        style="-fx-font-size: 18px; -fx-background-color: #00bcd4; -fx-text-fill: white; -fx-pref-width: 150px; -fx-padding: 12px; -fx-background-radius: 20px;"
+                        styleClass="button-auth"  />
+<!--                onMouseEntered="#onHover" onMouseExited="#onExit"-->
+
+                <Button fx:id="btnReturn" text="Return to Welcome"
+                        style="-fx-font-size: 14px; -fx-background-color: #f44336; -fx-text-fill: white; -fx-pref-width: 150px;"
+                        styleClass="button-auth" />
+            </VBox>
+
+            <!-- Hyperlink for Sign-In -->
+            <Hyperlink fx:id="linkSignIn" text="Already have an account? Sign In"
+                       style="-fx-text-fill: #1a73e8; -fx-underline: true; -fx-font-size: 14px;" />
+        </VBox>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <Text BorderPane.alignment="CENTER" text="© 2025 CourierPro Inc."
+              style="-fx-font-size: 15px; -fx-fill: #ffffff;" />
+    </bottom>
+</BorderPane>

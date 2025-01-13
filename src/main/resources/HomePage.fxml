@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/11.0" fx:id="root" stylesheets="/styles/HomePage.css" style="-fx-padding: 20;" fx:controller="org.courier.controllers.HomePageController">
+
+    <!-- Top Menu Bar -->
+    <top>
+        <MenuBar fx:id="menuBar">
+            <Menu fx:id="fileMenu" text="File">
+                <MenuItem fx:id="newMenuItem" text="New" />
+                <MenuItem fx:id="openMenuItem" text="Open" />
+                <MenuItem fx:id="saveMenuItem" text="Save" />
+                <MenuItem fx:id="exitMenuItem" text="Exit" />
+            </Menu>
+            <Menu fx:id="editMenu" text="Edit">
+                <MenuItem fx:id="cutMenuItem" text="Cut" />
+                <MenuItem fx:id="copyMenuItem" text="Copy" />
+                <MenuItem fx:id="pasteMenuItem" text="Paste" />
+            </Menu>
+            <Menu fx:id="helpMenu" text="Help">
+                <MenuItem fx:id="aboutMenuItem" text="About" />
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- Navigation on the Left -->
+    <left>
+        <VBox fx:id="navigation" spacing="10" styleClass="nav-panel" style="-fx-padding: 20;">
+            <Button text="Dashboard" fx:id="dashboardButton" styleClass="main-button" onAction="#handleDashboardNavigation" />
+            <Button text="Browse Products" fx:id="productsButton" onAction="#handleBrowseProducts" styleClass="main-button"/>
+            <Button text="Feedback and Reviews" fx:id="feedbackButton" styleClass="main-button" />
+            <Button text="Exit App" fx:id="exitButton" onAction="#handleExit" styleClass="exit-button"/>
+        </VBox>
+    </left>
+
+    <!-- Center Content -->
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <Label fx:id="userNameLabel" style="-fx-font-size: 20; -fx-text-fill: #ffffff;" />
+            <Label text="Welcome to Courier Services" styleClass="main-title" />
+            <Label text="Quick, reliable, and personalized delivery services" styleClass="subtext" />
+
+            <!-- Buttons for Main Actions -->
+            <HBox spacing="8" alignment="CENTER" >
+                <Button text="Explore Products" fx:id="browseProductsButton" onAction="#handleBrowseProducts" styleClass="main-button" />
+                <Button text="Go to Dashboard" fx:id="gotoDashboardButton" styleClass="main-button" onAction="#handleDashboardNavigation" />
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- Bottom Status Bar -->
+    <bottom>
+        <HBox fx:id="statusBar" alignment="CENTER" spacing="10">
+            <Label text="Status: Ready" fx:id="statusLabel" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21.0.0" fx:id="root" stylesheets="/styles/style.css" styleClass="root" xmlns:fx="http://javafx.com/fxml" fx:controller="org.courier.controllers.WelcomeController">
+    <top>
+        <VBox alignment="CENTER" spacing="10" BorderPane.alignment="CENTER">
+            <Text text="Welcome to CourierPro" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-fill: #0078D7;"/>
+            <Text text="Your Reliable Delivery Partner" style="-fx-font-size: 18px; -fx-font-style: italic; -fx-fill: #555555;"/>
+        </VBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" spacing="20">
+            <Button text="Login" fx:id="btnLogin" styleClass="button-auth" style="-fx-font-size: 18px; -fx-background-color: #0078D7; -fx-text-fill: white;" prefWidth="200" layoutX="500" layoutY="300"/>
+            <Button text="Sign Up" fx:id="btnSignUp" styleClass="button-auth" style="-fx-font-size: 18px; -fx-background-color: #28A745; -fx-text-fill: white;" prefWidth="200" layoutX="500" layoutY="300"/>
+            <HBox alignment="CENTER" spacing="10">
+
+                <Button text="Exit" fx:id="btnExit" style="-fx-font-size: 16px; -fx-background-color: #e91e63; -fx-text-fill: white; -fx-background-radius: 20px; -fx-pref-width: 350px; -fx-padding: 12px;" onAction="#handleExit" styleClass="button-auth"/>
+            </HBox>
+        </VBox>
+    </center>
+    <bottom>
+        <Text text="© 2025 CourierPro Inc." style="-fx-font-size: 15px; -fx-fill: #ffffff;" BorderPane.alignment="CENTER"/>
+    </bottom>
+</BorderPane>

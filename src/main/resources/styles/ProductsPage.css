@@ -1,0 +1,55 @@
+.product-page {
+    -fx-background-color: linear-gradient(to bottom, #F0F8FF, #E6E6FA);
+}
+
+.tile-pane {
+    -fx-padding: 10;
+    -fx-background-color: transparent;
+}
+.main-button {
+    -fx-font-size: 14px;
+    -fx-background-color: #0073e6;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+    -fx-pref-width: 200px;
+        -fx-max-width: 200px;
+        -fx-min-width: 200px;
+
+}
+.glabal-width {
+    -fx-pref-width: 200px;
+        -fx-max-width: 200px;
+        -fx-min-width: 200px;
+}
+
+.main-button:hover {
+    -fx-opacity: 0.8;
+    -fx-cursor: hand;
+}
+
+.label {
+    -fx-font-family: "Roboto";
+}
+
+
+.button-exit {
+    -fx-font-size: 14px;
+        -fx-background-color: #f44336;
+        -fx-text-fill: white;
+        -fx-padding: 10 20;
+        -fx-background-radius: 5;
+        -fx-cursor: hand;
+        -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0, 0, 5);
+        -fx-pref-width: 200px;
+                -fx-max-width: 200px;
+                -fx-min-width: 200px;
+}
+
+.button-exit:hover {
+    -fx-opacity: 0.8;
+    -fx-cursor: hand;
+}
+

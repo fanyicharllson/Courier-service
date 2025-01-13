@@ -1,0 +1,30 @@
+.main-button {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-text-fill: #3a7bd5;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+.main-button:hover {
+    -fx-background-color: #f2f2f2;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 5);
+
+}
+
+.list-view {
+    -fx-background-color: #f9f9f9;
+    -fx-border-radius: 10;
+    -fx-border-color: #ffffff;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5);
+    -fx-background-radius: 10;
+}
+
+.label-title {
+    -fx-font-size: 26;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
