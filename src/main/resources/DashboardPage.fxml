@@ -19,6 +19,7 @@
             <Button text="Track Orders" styleClass="menu-button" onAction="#handleTrackOrdersNavigation"/>
             <Button text="Orders" styleClass="menu-button" onAction="#handleOrdersNavigation"/>
             <Button text="Profile" styleClass="menu-button" onAction="#handleProfileNavigation"/>
+            <Button text="Update Delivery Address" styleClass="menu-button" onAction="#handleUpdateDeliveryAddress"/>
             <Button text="Logout" styleClass="menu-button" onAction="#handleLogout"/>
         </VBox>
     </left>

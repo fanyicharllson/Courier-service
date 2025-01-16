@@ -179,7 +179,8 @@ public class CartPageController {
                 showAlert("Payment successful! Thank you for your purchase.");
                 loadCartItems();
                 userAddress.DeliveryAddress();
-                showAlert("You can now go to dashboard to view your orders and track them.");
+                showAlert("You can later on update your delivery address in your dashboard.");
+                showAlert("You can now go to your dashboard to view your orders, update your delivery address and track your orders.");
 
             } else {
                 showAlert("Payment failed. Try again.");

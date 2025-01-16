@@ -146,28 +146,53 @@ public class DatabaseUserServices {
     }
 
     public boolean saveAddress(int userId, String fullName, String streetAddress, String city, String state, String zipCode, String addressType) {
-        String query = "INSERT INTO User_Addresses (user_id, full_name, street_address, city, state, zip_code, address_type) " +
+        String checkQuery = "SELECT COUNT(*) FROM User_Addresses WHERE user_id = ?";
+        String insertQuery = "INSERT INTO User_Addresses (user_id, full_name, street_address, city, state, zip_code, address_type) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String updateQuery = "UPDATE User_Addresses SET full_name = ?, street_address = ?, city = ?, state = ?, zip_code = ?, address_type = ? " +
+                "WHERE user_id = ?";
+
         try (Connection conn = DriverManager.getConnection(DB_URL);
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+             PreparedStatement checkStmt = conn.prepareStatement(checkQuery);
+             PreparedStatement insertStmt = conn.prepareStatement(insertQuery);
+             PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
 
-            stmt.setInt(1, userId);
-            stmt.setString(2, fullName);
-            stmt.setString(3, streetAddress);
-            stmt.setString(4, city);
-            stmt.setString(5, state);
-            stmt.setString(6, zipCode);
-            stmt.setString(7, addressType);
+            // Check if the address already exists for the user
+            checkStmt.setInt(1, userId);
+            ResultSet rs = checkStmt.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
 
-            int rowsInserted = stmt.executeUpdate();
-            return rowsInserted > 0;
+            if (count > 0) {
+                // Update existing address
+                updateStmt.setString(1, fullName);
+                updateStmt.setString(2, streetAddress);
+                updateStmt.setString(3, city);
+                updateStmt.setString(4, state);
+                updateStmt.setString(5, zipCode);
+                updateStmt.setString(6, addressType);
+                updateStmt.setInt(7, userId);
+
+                int rowsUpdated = updateStmt.executeUpdate();
+                return rowsUpdated > 0;
+            } else {
+                // Insert new address
+                insertStmt.setInt(1, userId);
+                insertStmt.setString(2, fullName);
+                insertStmt.setString(3, streetAddress);
+                insertStmt.setString(4, city);
+                insertStmt.setString(5, state);
+                insertStmt.setString(6, zipCode);
+                insertStmt.setString(7, addressType);
+
+                int rowsInserted = insertStmt.executeUpdate();
+                return rowsInserted > 0;
+            }
         } catch (SQLException e) {
             Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to save address", e);
             return false;
         }
     }
-
-
     public int getUserId(String email) {
         String query = "SELECT user_id FROM users WHERE email = ?";
         int userId = -1;

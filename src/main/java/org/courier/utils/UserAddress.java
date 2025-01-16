@@ -15,7 +15,8 @@ public class UserAddress {
         // Create a new dialog
         Dialog<Void> dialog = new Dialog<>();
         dialog.setTitle("Manage Delivery Address");
-        dialog.setHeaderText("Add or Update Your Delivery Address");
+        dialog.setHeaderText("Add or Update Your Delivery Address. We will deliver to this address.");
+
 
 // Set the button types
         ButtonType saveButtonType = new ButtonType("Save Address", ButtonBar.ButtonData.OK_DONE);
@@ -123,9 +124,5 @@ public class UserAddress {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
-
-
 
 }

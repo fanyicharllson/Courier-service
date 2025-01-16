@@ -12,6 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import org.courier.services.DatabaseUserServices;
 import org.courier.utils.SetNameEmail;
+import org.courier.utils.UserAddress;
+
 import java.io.File;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -20,6 +22,7 @@ import java.util.logging.Logger;
 public class DashboardController {
 
     DatabaseUserServices databaseUserServices = new DatabaseUserServices();
+    UserAddress userAddress = new UserAddress();
 
     @FXML
     private ImageView profileImage;
@@ -171,4 +174,7 @@ public class DashboardController {
     }
 
 
+    public void handleUpdateDeliveryAddress() {
+        userAddress.DeliveryAddress();
+    }
 }
