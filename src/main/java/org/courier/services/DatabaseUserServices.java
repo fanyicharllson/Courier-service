@@ -5,6 +5,8 @@ import javafx.scene.control.Alert;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseUserServices {
 
@@ -32,7 +34,7 @@ public class DatabaseUserServices {
             statement.setString(2, email);
             return statement.executeUpdate() > 0;
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to update password in the database.", e);
             showAlert("Database Error", "Failed to update password in the database.");
             return false;
         }
@@ -54,7 +56,7 @@ public class DatabaseUserServices {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to fetch user name from the database.", e);
         }
 
         return userName;
@@ -80,7 +82,7 @@ public class DatabaseUserServices {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to validate user credentials in the database.", e);
         }
         return false;
     }
@@ -96,7 +98,7 @@ public class DatabaseUserServices {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to fetch profile image from the database.", e);
             showAlert("Database Error", "Failed to fetch profile image from the database.");
         }
         return imagePath;
@@ -110,7 +112,7 @@ public class DatabaseUserServices {
             statement.setString(2, email);
             return statement.executeUpdate() > 0;
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to update profile image path in the database.", e);
             showAlert("Database Error", "Failed to update profile image path in the database.");
             return false;
         }
@@ -138,10 +140,50 @@ public class DatabaseUserServices {
                 return rs.getInt(1) > 0;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to check if email exists in the database.", e);
         }
         return false;
     }
 
+    public boolean saveAddress(int userId, String fullName, String streetAddress, String city, String state, String zipCode, String addressType) {
+        String query = "INSERT INTO User_Addresses (user_id, full_name, street_address, city, state, zip_code, address_type) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, userId);
+            stmt.setString(2, fullName);
+            stmt.setString(3, streetAddress);
+            stmt.setString(4, city);
+            stmt.setString(5, state);
+            stmt.setString(6, zipCode);
+            stmt.setString(7, addressType);
+
+            int rowsInserted = stmt.executeUpdate();
+            return rowsInserted > 0;
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to save address", e);
+            return false;
+        }
+    }
+
+
+    public int getUserId(String email) {
+        String query = "SELECT user_id FROM users WHERE email = ?";
+        int userId = -1;
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                userId = rs.getInt("user_id");
+            }
+        } catch (SQLException e) {
+            showAlert("Database Error", "Failed to fetch user id from the database.");
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to fetch user id from the database.", e);
+        }
+        return userId;
+    }
 
 }

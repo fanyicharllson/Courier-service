@@ -16,9 +16,12 @@ import javafx.stage.Stage;
 import org.courier.models.CartItem;
 import org.courier.services.DatabaseProductService;
 import org.courier.utils.SetNameEmail;
+import org.courier.utils.UserAddress;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CartPageController {
 
@@ -31,7 +34,10 @@ public class CartPageController {
     @FXML
     private Button btnExit;
 
-    private DatabaseProductService databaseService = new DatabaseProductService();
+    private final DatabaseProductService databaseService = new DatabaseProductService();
+    private final UserAddress userAddress = new UserAddress();
+
+
     String userEmail = SetNameEmail.getEmail();
 
     @FXML
@@ -99,18 +105,15 @@ public class CartPageController {
         Label productPrice = new Label(String.format("Price: $%.2f", item.getPrice()));
         productPrice.setStyle("-fx-font-size: 13px; -fx-text-fill: #555;");
         productPrice.setMinWidth(150);
-        productPrice.setPrefWidth(150);  // Add a fixed width for visibility
+        productPrice.setPrefWidth(150);
 
         Label productQuantity = new Label("Quantity: " + item.getQuantity());
         productQuantity.setStyle("-fx-font-size: 13px; -fx-text-fill: #555;");
         productQuantity.setMinWidth(150);
-        productQuantity.setPrefWidth(150);  // Add a fixed width for visibility
-
-//        System.out.println("Product Name Label: " + productName.getText());
-//        System.out.println("Product Quantity Label: " + productQuantity.getText());
+        productQuantity.setPrefWidth(150);
 
         productDetails.getChildren().addAll(productName, productPrice, productQuantity);
-        HBox.setHgrow(productDetails, Priority.ALWAYS); // Allow it to expand
+        HBox.setHgrow(productDetails, Priority.ALWAYS);
 
         // Add product details to row
         row.getChildren().add(productDetails);
@@ -174,7 +177,10 @@ public class CartPageController {
             if (databaseService.saveOrdersFromCart(userEmail)) {
                 databaseService.clearCart();
                 showAlert("Payment successful! Thank you for your purchase.");
-                loadCartItems();  // Reload cart to update UI
+                loadCartItems();
+                userAddress.DeliveryAddress();
+                showAlert("You can now go to dashboard to view your orders and track them.");
+
             } else {
                 showAlert("Payment failed. Try again.");
             }
@@ -203,7 +209,7 @@ public class CartPageController {
             stage.setScene(scene);
             stage.show();
         } catch (java.io.IOException e) {
-            e.printStackTrace();
+            Logger.getLogger(CartPageController.class.getName()).log(Level.SEVERE, "Error loading page", e);
         }
 
     }
