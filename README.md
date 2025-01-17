@@ -39,7 +39,7 @@ To install and run the project locally, follow these steps:
     name TEXT NOT NULL,
     address TEXT NOT NULL,
     contact TEXT NOT NULL
-)
+    )
    ```    
    ```sh
         CREATE TABLE Delivery_Details (
@@ -49,7 +49,7 @@ To install and run the project locally, follow these steps:
     hub_id INTEGER NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (hub_id) REFERENCES Hub_Rates(hub_id)
-)  
+    )  
    ```    
    ```sh
         CREATE TABLE Non_Delivery_Details (
@@ -57,7 +57,7 @@ To install and run the project locally, follow these steps:
     reason TEXT NOT NULL,
     attempt_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
-)
+    )
        
    ```    
    ```sh
@@ -69,7 +69,7 @@ To install and run the project locally, follow these steps:
     comments TEXT,
     FOREIGN KEY (user_email) REFERENCES users(email),
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
-)
+    )
        
    ```    
    ```sh
@@ -83,7 +83,7 @@ To install and run the project locally, follow these steps:
     zip_code TEXT NOT NULL,
     address_type TEXT CHECK (address_type IN ('Home', 'Work', 'Other')),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
-)
+    )
        
    ```    
    ```sh
@@ -93,17 +93,17 @@ To install and run the project locally, follow these steps:
     quantity INTEGER NOT NULL,                -- Quantity of the product in the cart
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, user_email TEXT NOT NULL, -- Timestamp for when the product was added
     FOREIGN KEY (product_id) REFERENCES products (product_id) ON DELETE CASCADE
-)
+    )
        
    ```    
    ```sh
-CREATE TABLE orders (
+   CREATE TABLE orders (
     order_id INTEGER PRIMARY KEY AUTOINCREMENT,
     product_id INTEGER NOT NULL,
     quantity INTEGER NOT NULL,
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, user_email TEXT NOT NULL, status TEXT DEFAULT 'Pending',
     FOREIGN KEY (product_id) REFERENCES products(product_id)
-)
+    )
        
    ```
 ```sh
@@ -125,7 +125,7 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 , image_path VARCHAR(1000))
-
+)
 ```  
 ```sh
 CREATE TABLE Hub_Rates (
