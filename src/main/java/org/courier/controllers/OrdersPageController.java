@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OrdersPageController {
 
@@ -68,7 +70,7 @@ public class OrdersPageController {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.getLogger(OrdersPageController.class.getName()).log(Level.SEVERE, "Error loading orders for user with email: " + userEmail, e);
             ordersListView.getItems().add("Error loading orders.");
         }
     }
@@ -86,7 +88,7 @@ public class OrdersPageController {
             stage.setScene(scene);
             stage.show();
         } catch (java.io.IOException e) {
-            e.printStackTrace();
+            Logger.getLogger(OrdersPageController.class.getName()).log(Level.SEVERE, "Error loading orders screen.", e);
         }
 
     }
@@ -97,6 +99,6 @@ public class OrdersPageController {
     }
 
     public void handleTrackOrder(ActionEvent event) {
-        System.out.println("Track Order");
+        handleNavigation(event, "/TrackOrderPage.fxml");
     }
 }

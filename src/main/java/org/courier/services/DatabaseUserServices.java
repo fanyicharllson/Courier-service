@@ -211,4 +211,35 @@ public class DatabaseUserServices {
         return userId;
     }
 
+
+    public String getUserAddress(int userId) {
+        String query = "SELECT full_name, street_address, city, state, zip_code, address_type " +
+                "FROM User_Addresses WHERE user_id = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                // Combine the address details into a single string or format them as needed
+                String fullName = rs.getString("full_name");
+                String streetAddress = rs.getString("street_address");
+                String city = rs.getString("city");
+                String state = rs.getString("state");
+                String zipCode = rs.getString("zip_code");
+                String addressType = rs.getString("address_type");
+
+                return String.format("Name: %s\nAddress: %s, %s, %s - %s\nType: %s",
+                        fullName, streetAddress, city, state, zipCode, addressType);
+            } else {
+                return "No address found. Please go to dashboard to add your delivery address.";
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to fetch user address", e);
+            return "Error retrieving address.";
+        }
+    }
+
+
 }

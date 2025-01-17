@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.courier.services.DatabaseUserServices;
+import org.courier.utils.SetNameEmail;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -17,6 +19,10 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class TrackOrdersController {
+
+    DatabaseUserServices databaseUserServices = new DatabaseUserServices();
+
+
     @FXML
     public ListView<String> companyDetailsListView;
 
@@ -56,6 +62,9 @@ public class TrackOrdersController {
         progressIndicator.setProgress(0.0);
         progressLabel.setText(orderStages.getFirst()); // Corrected to use `get(0)`
         orderTimelineListView.getItems().add("Tracking started: " + orderStages.getFirst());
+
+        int userId = databaseUserServices.getUserId(SetNameEmail.getEmail());
+        showDeliveryDetails(userId, deliveryDetailsListView);
     }
 
     @FXML
@@ -118,11 +127,19 @@ public class TrackOrdersController {
         } catch (IOException e) {
             Logger.getLogger(String.valueOf(TrackOrdersController.class)).severe("Error loading welcome screen");
         }
+    }
+    public void showDeliveryDetails(int userId, ListView<String> deliveryDetailsListView) {
+        // Fetch user address
+        String userAddress = databaseUserServices.getUserAddress(userId);
 
+        // Clear existing items and add the fetched details
+        deliveryDetailsListView.getItems().clear();
+        deliveryDetailsListView.getItems().addAll(
+                userAddress
+        );
     }
     private void populateAdditionalTabs() {
         companyDetailsListView.getItems().addAll("Company Name: XYZ Ltd.", "Contact: support@xyz.com");
-        deliveryDetailsListView.getItems().addAll("Delivery Driver: John Doe", "Vehicle: Van - ABC 1234");
         reviewsListView.getItems().addAll("Great service!", "Delivery was on time.", "Very professional.");
     }
 
