@@ -115,6 +115,7 @@ CREATE TABLE products (
     stock INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 , imagePath TEXT, likes INTEGER DEFAULT 0, quantity INTEGER DEFAULT 1)
+)
 
 ```  
 ```sh
