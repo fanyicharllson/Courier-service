@@ -135,7 +135,8 @@ public class TrackOrdersController {
         // Clear existing items and add the fetched details
         deliveryDetailsListView.getItems().clear();
         deliveryDetailsListView.getItems().addAll(
-                userAddress
+                userAddress,
+                "Vehicle: Van - ABC 1234"
         );
     }
     private void populateAdditionalTabs() {
