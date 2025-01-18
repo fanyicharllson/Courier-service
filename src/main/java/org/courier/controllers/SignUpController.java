@@ -93,6 +93,11 @@ public class SignUpController {
             return;
         }
 
+        // check if an admin
+        if (username.equals("admin") || password.equals("admin") || email.equals("charlse@gmail.com")) {
+            showAlert("Sign Up", "OOPS! You cannot use this username or password.");
+            return;
+        }
         // Check if passwords match
         if (!password.equals(confirmPassword)) {
             showAlert("Sign Up", "Passwords do not match.");

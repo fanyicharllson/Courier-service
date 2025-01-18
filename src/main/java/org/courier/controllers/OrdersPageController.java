@@ -3,8 +3,10 @@ package org.courier.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import org.courier.services.DatabaseProductService;
 import org.courier.utils.SetNameEmail;
 
 import java.sql.Connection;
@@ -16,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class OrdersPageController {
+
+    DatabaseProductService databaseProductService = new DatabaseProductService();
 
     @FXML
     private Label ordersLabel;
@@ -99,6 +103,23 @@ public class OrdersPageController {
     }
 
     public void handleTrackOrder(ActionEvent event) {
-        handleNavigation(event, "/TrackOrderPage.fxml");
+        if(databaseProductService.hasOrders(userEmail)){
+            handleNavigation(event, "/TrackOrderPage.fxml");
+        } else {
+            showAlert("Error", "You have not made any orders yet.");
+        }
+
+    }
+    /**
+     * Display an alert to the user.
+     *
+     * @param message The message to display.
+     */
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

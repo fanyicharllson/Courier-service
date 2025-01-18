@@ -7,30 +7,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.courier.utils.ContactForm;
 
 public class HomePageController {
+
+    ContactForm contactForm = new ContactForm();
+
     @FXML
     private Button exitButton;
 
     @FXML
     private Label userNameLabel;
 
-    @FXML
-    private Button dashboardButton;
-
-    @FXML
-    private Button productsButton;
-
-
-    @FXML
-    private Button feedbackButton;
-
-    @FXML
-    private Button browseProductsButton;
-
-
-    @FXML
-    private Button gotoDashboardButton;
 
     @FXML
     private Label statusLabel;
@@ -120,5 +108,7 @@ public class HomePageController {
         System.out.println("HomePageController initialized.");
     }
 
-
+    public void handleContactUs() {
+        contactForm.showContactForm();
+    }
 }

@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import org.courier.services.DatabaseProductService;
 import org.courier.services.DatabaseUserServices;
 import org.courier.utils.SetNameEmail;
 import org.courier.utils.UserAddress;
@@ -22,7 +23,10 @@ import java.util.logging.Logger;
 public class DashboardController {
 
     DatabaseUserServices databaseUserServices = new DatabaseUserServices();
+    DatabaseProductService databaseProductService = new DatabaseProductService();
     UserAddress userAddress = new UserAddress();
+    private final String email = SetNameEmail.getEmail();
+
 
     @FXML
     private ImageView profileImage;
@@ -44,7 +48,7 @@ public class DashboardController {
         if (imagePath == null || imagePath.isEmpty()) {
             showAlert("Error", "The profile image path is empty. Using default image.");
             // Render default template image
-            profileImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/cameron.png"))));
+            profileImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/avatar.png"))));
               profileName.setText(SetNameEmail.getUserName());
         } else {
             // Validate and render the image
@@ -54,7 +58,7 @@ public class DashboardController {
                 profileName.setText(SetNameEmail.getUserName());
             } else {
                 showAlert("Error", "The profile image path is invalid. Using default image.");
-                profileImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/cameron.png"))));
+                profileImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/avatar.png"))));
                 profileName.setText(SetNameEmail.getUserName());
             }
         }
@@ -81,7 +85,11 @@ public class DashboardController {
      */
     @FXML
     private void handleTrackOrdersNavigation(ActionEvent event) {
-        handleRedirect(event, "/TrackOrderPage.fxml", "Dashboard");
+        if (databaseProductService.hasOrders(email)) {
+            handleRedirect(event, "/TrackOrderPage.fxml", "Dashboard");
+        } else {
+            showAlert("No Orders Found", "You have not placed any orders yet. Please make an order first.");
+        }
     }
 
     /**

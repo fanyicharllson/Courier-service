@@ -241,5 +241,24 @@ public class DatabaseUserServices {
         }
     }
 
+    public boolean saveMessage(String name, String email, String message) {
+        String query = "INSERT INTO ContactMessages (name, email, message, created_at) VALUES (?, ?, ?, datetime('now'))";
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, name);
+            stmt.setString(2, email);
+            stmt.setString(3, message);
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            showAlert("Database Error", "Failed to save message");
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to save message", e);
+            return false;
+        }
+    }
+
+
 
 }

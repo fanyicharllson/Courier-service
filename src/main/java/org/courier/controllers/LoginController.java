@@ -129,6 +129,7 @@ public class LoginController {
         dialog.showAndWait();
     }
 
+
     private void handleRedirect(ActionEvent event, String fxmlPath, String pageTitle) {
         Node source = (Node) event.getSource();
         javafx.stage.Stage stage = (javafx.stage.Stage) source.getScene().getWindow();
@@ -145,6 +146,8 @@ public class LoginController {
         }
     }
 
+
+
     // Handle login logic
     private void loginUser() {
         String email = txtEmail.getText().trim();
@@ -154,6 +157,27 @@ public class LoginController {
         if (email.isEmpty() || password.isEmpty()) {
             showAlert("Login", "Please enter both email and password.");
             return;
+        }
+
+        //check if it's an admin(testing purposes)
+        if (email.equals("charlse@gmail.com") && password.equals("admin")) {
+            try {
+                javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/admin/dashboard.fxml"));
+                javafx.scene.Parent root = loader.load();
+
+                // Get the current stage
+                javafx.stage.Stage stage = (javafx.stage.Stage) txtEmail.getScene().getWindow();
+
+                javafx.scene.Scene scene = new javafx.scene.Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (java.io.IOException e) {
+                e.printStackTrace();
+                showAlert("Error", "Unable to load the HomePage.");
+            }
+
+            return;
+
         }
 
         // Check credentials in the database
@@ -177,6 +201,7 @@ public class LoginController {
             showAlert("Login", "Invalid email or password. Please try again.");
         }
     }
+
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -1,5 +1,7 @@
+
 .product-page {
-    -fx-background-color: linear-gradient(to bottom, #F0F8FF, #E6E6FA);
+  -fx-background-color: linear-gradient(to bottom, lightblue, steelblue);
+
 }
 
 .tile-pane {

@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: linear-gradient(to bottom, #4facfe, #00f2fe);
+    -fx-background-color: linear-gradient(to bottom, lightblue, steelblue);
     -fx-padding: 10;
     -fx-min-width: 900px;
         -fx-min-height: 700px;

@@ -41,7 +41,7 @@ public class ProfilePageController {
         String imagePath = databaseUserServices.fetchImagePathFromDatabase(SetNameEmail.getEmail());
         if (imagePath == null || imagePath.isEmpty()) {
             // Render default template image
-            profileImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/cameron.png"))));
+            profileImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/avatar.png"))));
         } else {
             // Validate and render the image
             File imageFile = new File(imagePath);
@@ -49,7 +49,7 @@ public class ProfilePageController {
                 profileImage.setImage(new Image(imageFile.toURI().toString()));
             } else {
                 showAlert("Error", "The profile image path is invalid. Using default image.");
-                profileImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/cameron.png"))));
+                profileImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/avatar.png"))));
             }
         }
     }

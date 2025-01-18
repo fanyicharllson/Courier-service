@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.courier.models.Product;
 import org.courier.services.DatabaseProductService;
+import org.courier.utils.ContactForm;
 
 import java.util.List;
 import java.util.Objects;
@@ -26,6 +27,7 @@ public class ProductPageController {
     private TilePane productGrid; // Container for dynamically loaded product cards
 
     private final DatabaseProductService databaseService = new DatabaseProductService();
+    private final ContactForm contactForm = new ContactForm();
 
     /**
      * Initialize the Products Page Controller
@@ -221,5 +223,9 @@ public class ProductPageController {
                 stage.close();
             }
         });
+    }
+
+    public void handleContactUs() {
+        contactForm.showContactForm();
     }
 }

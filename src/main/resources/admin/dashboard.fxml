@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/11.0"
+            fx:controller="org.courier.controllers.admin.DashboardController" stylesheets="/styles/dashboard.css">
+    <!-- Left Panel -->
+    <left>
+        <VBox spacing="20" alignment="TOP_CENTER"
+              style="-fx-background-color: steelblue;" prefWidth="200">
+            <Label text="Admin Dashboard" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
+            <Button text="Home" styleClass="menu-button" onAction="#handleNavigationToHome"/>
+            <Button text="Orders" styleClass="menu-button" onAction="#handleOrdersNavigation"/>
+            <Button text="Add Product" styleClass="menu-button" onAction="#handleAddProductNavigation"/>
+            <Button text="Edit Product" styleClass="menu-button" onAction="#handleEditProductNavigation"/>
+            <Button text="Delete Product" styleClass="menu-button" onAction="#handleDeleteProductNavigation"/>
+            <Button text="View Users" styleClass="menu-button" onAction="#handleViewUsersNavigation"/>
+            <Button text="Logout" styleClass="menu-button" onAction="#handleLogout"/>
+        </VBox>
+    </left>
+
+    <!-- Top Panel -->
+    <top>
+        <HBox alignment="CENTER_RIGHT" style="-fx-background-color: steelblue; -fx-padding: 10;">
+            <HBox spacing="10" alignment="CENTER_RIGHT" style="-fx-padding: 0 0 0 20;" fx:id="profileBox">
+                <StackPane
+                        style="-fx-background-radius: 50; -fx-border-radius: 50; -fx-background-color: white; -fx-border-color: white; -fx-border-width: 2;">
+                    <ImageView fx:id="profileImage" fitWidth="50" fitHeight="50">
+                        <clip>
+                            <Circle radius="25" centerX="25" centerY="25"/>
+                        </clip>
+                    </ImageView>
+                </StackPane>
+                <Label fx:id="profileName" text="Admin"
+                       style="-fx-text-fill: #ffffff; -fx-font-size: 14; -fx-font-weight: bold;"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Center Content -->
+    <center>
+        <VBox spacing="15" alignment="CENTER"
+              style="-fx-padding: 30; -fx-background-color: linear-gradient(to bottom, #E3F2FD, #1565C0);">
+            <Label fx:id="welcomeLabel" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
+            <Label text="Manage your system using the options in the dashboard menu."
+                   style="-fx-font-size: 16; -fx-text-fill: #ffffff;"/>
+            <Label fx:id="dashboardMessage" style="-fx-font-size: 14; -fx-text-fill: #ffffff;"/>
+        </VBox>
+    </center>
+
+    <!-- Bottom Panel -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: steelblue; -fx-padding: 15;">
+            <Label text="© 2025 CourierPro Inc." style="-fx-font-size: 12; -fx-text-fill: #ffffff;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

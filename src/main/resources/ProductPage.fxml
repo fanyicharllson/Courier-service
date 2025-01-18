@@ -21,6 +21,7 @@
         <VBox fx:id="navigation" spacing="10" styleClass="nav-panel" style="-fx-padding: 20;" >
             <Button text="Home" fx:id="homeButton" onAction="#handleHomeNavigation" styleClass="main-button"/>
             <Button text="Go to Dashboard" fx:id="trackOrdersButton"  onAction="#handleDashboardNavigation" styleClass="main-button"/>
+            <Button text="Contact Us" onAction="#handleContactUs" styleClass="main-button" />
             <Button text="Exit App" fx:id="btnExit" styleClass="button-exit" onAction="#handleExit" />
         </VBox>
     </left>

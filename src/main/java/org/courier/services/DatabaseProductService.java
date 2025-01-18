@@ -1,5 +1,6 @@
 package org.courier.services;
 
+import javafx.scene.control.Alert;
 import org.courier.models.CartItem;
 import org.courier.models.Product;
 import org.courier.utils.SetNameEmail;
@@ -219,5 +220,33 @@ public class DatabaseProductService {
         return true;  // Default to empty if there's an error
     }
 
+    // Method to check if a user has any orders in the database
+    public boolean hasOrders(String email) {
+        String query = "SELECT COUNT(*) FROM orders WHERE user_email = ?";
+        try (Connection connection = DriverManager.getConnection(DB_URL);
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int orderCount = resultSet.getInt(1);
+                return orderCount > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("Database Error", "Unable to check orders. Please try again later.");
+        }
+        return false;
+    }
+
+    // Method to show an alert
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 
 }
