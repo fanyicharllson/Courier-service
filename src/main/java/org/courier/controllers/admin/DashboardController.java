@@ -1,6 +1,7 @@
 package org.courier.controllers.admin;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import org.courier.controllers.CartPageController;
 import org.courier.utils.admin.AddProductForm;
 
@@ -47,16 +48,34 @@ public class DashboardController {
         }
 
     }
+    // Display an alert message
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
 
     public void handleOrdersNavigation(ActionEvent event) {
+        showAlert("Order", "Not available at the moment");
+
     }
 
     public void handleEditProductNavigation(ActionEvent event) {
+        showAlert("Edit Product", "Not available at the moment");
+
+
     }
 
     public void handleDeleteProductNavigation(ActionEvent event) {
+        showAlert("Delete Product", "Not available at the moment");
+
     }
 
     public void handleViewUsersNavigation(ActionEvent event) {
+        showAlert("View Users", "Not available at the moment");
+
     }
 }

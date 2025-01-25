@@ -60,7 +60,7 @@ public class TrackOrdersController {
     public void initialize() {
         populateAdditionalTabs();
         progressIndicator.setProgress(0.0);
-        progressLabel.setText(orderStages.getFirst()); // Corrected to use `get(0)`
+        progressLabel.setText(orderStages.getFirst());
         orderTimelineListView.getItems().add("Tracking started: " + orderStages.getFirst());
 
         int userId = databaseUserServices.getUserId(SetNameEmail.getEmail());

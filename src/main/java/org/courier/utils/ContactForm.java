@@ -34,6 +34,7 @@ public class ContactForm {
 
         TextField emailField = new TextField();
         emailField.setText(email); // Set default email
+        emailField.setDisable(true);
         emailField.setPromptText("Your Email");
 
         TextArea messageArea = new TextArea();

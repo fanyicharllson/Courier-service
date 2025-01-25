@@ -38,7 +38,7 @@
     <!-- Footer -->
     <bottom>
         <HBox alignment="CENTER" style="-fx-padding: 20; -fx-background-color: linear-gradient(to right, lightblue, steelblue);">
-            <Button text="Proceed to Checkout" fx:id="checkoutButton" onAction="#handleProceedToCheckout"
+            <Button text="Cart" fx:id="checkoutButton" onAction="#handleProceedToCheckout"
                     style="-fx-font-size: 16; -fx-background-color: #0073e6; -fx-text-fill: white; -fx-font-weight: bold;"
                     />
         </HBox>

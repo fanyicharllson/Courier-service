@@ -78,7 +78,7 @@ public class ProductPageController {
         // Product Image
         String resourcePath = Objects.requireNonNull(getClass().getResource(product.getImagePath())).toExternalForm();
         ImageView imageView = new ImageView(new Image(resourcePath));
-        System.out.println("Image Path: " + resourcePath);
+//        System.out.println("Image Path: " + resourcePath);
         imageView.setFitWidth(200);
         imageView.setFitHeight(150);
         imageView.setStyle("-fx-background-radius: 25;");

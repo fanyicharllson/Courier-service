@@ -48,8 +48,8 @@ public class ProfilePageController {
             if (imageFile.exists() && imageFile.isFile()) {
                 profileImage.setImage(new Image(imageFile.toURI().toString()));
             } else {
-                showAlert("Error", "The profile image path is invalid. Using default image.");
                 profileImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/avatar.png"))));
+                 showAlert("Error", "The profile image path is invalid. Using default image.");
             }
         }
     }
