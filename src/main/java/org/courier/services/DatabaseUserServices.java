@@ -272,6 +272,26 @@ public class DatabaseUserServices {
         return null;
     }
 
+    public boolean isAddressEmpty(int userId) {
+        String query = "SELECT COUNT(*) FROM User_Addresses WHERE user_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setInt(1, userId);
+            ResultSet resultSet = stmt.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1) == 0;  // Returns true if no address exists for the user
+            }
+        } catch (SQLException e) {
+            System.err.println("Error checking if address is empty: " + e.getMessage());
+        }
+
+        return true;  // Default to true in case of an error
+    }
+
+
 
     public boolean saveMessage(String name, String email, String message) {
         String query = "INSERT INTO ContactMessages (name, email, message, created_at) VALUES (?, ?, ?, datetime('now'))";

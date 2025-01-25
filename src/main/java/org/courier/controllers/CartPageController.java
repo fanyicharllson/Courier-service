@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.courier.models.CartItem;
 import org.courier.services.DatabaseProductService;
+import org.courier.services.DatabaseUserServices;
 import org.courier.utils.SetNameEmail;
 import org.courier.utils.UserAddress;
 
@@ -35,10 +36,12 @@ public class CartPageController {
     private Button btnExit;
 
     private final DatabaseProductService databaseService = new DatabaseProductService();
-    private final UserAddress userAddress = new UserAddress();
-
-
+    private  final DatabaseUserServices databaseUserServices = new DatabaseUserServices();
     String userEmail = SetNameEmail.getEmail();
+    int userId = databaseUserServices.getUserId(userEmail);
+
+
+
 
     @FXML
     public void initialize() {
@@ -185,6 +188,10 @@ public class CartPageController {
         // Check if the cart is empty
         if (databaseService.isCartEmpty()) {
             showAlert("Your cart is empty. Add items to the cart before proceeding.");
+        }
+
+        if (databaseUserServices.isAddressEmpty(userId)) {
+            showAlert("Please update your delivery address before proceeding.");
         } else {
             // Proceed with payment if the cart is not empty
             if (databaseService.saveOrdersFromCart(userEmail)) {
