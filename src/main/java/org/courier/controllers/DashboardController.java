@@ -17,6 +17,7 @@ import org.courier.utils.UserAddress;
 
 import java.io.File;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -183,6 +184,6 @@ public class DashboardController {
 
 
     public void handleUpdateDeliveryAddress() {
-        userAddress.DeliveryAddress();
+        userAddress.DeliveryAddress("update");
     }
 }

@@ -3,19 +3,30 @@ package org.courier.utils;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import org.courier.models.Address;
 import org.courier.services.DatabaseUserServices;
+
 
 
 public class UserAddress {
 
     DatabaseUserServices databaseUserServices = new DatabaseUserServices();
     String email = SetNameEmail.getEmail();
+    int userId = databaseUserServices.getUserId(email);
+    Address existingAddress = databaseUserServices.fetchUserPromptAddress(userId);
+
 
     public void DeliveryAddress() {
+        DeliveryAddress("add");
+    }
+
+    public void DeliveryAddress(String param) {
+
+
         // Create a new dialog
         Dialog<Void> dialog = new Dialog<>();
         dialog.setTitle("Manage Delivery Address");
-        dialog.setHeaderText("Add or Update Your Delivery Address. We will deliver to this address.");
+        dialog.setHeaderText( param.equals("update") ? "Update Your Delivery Address. We will deliver to this address." : "Add Your Delivery Address. We will deliver to this address.");
 
 
 // Set the button types
@@ -29,23 +40,24 @@ public class UserAddress {
         grid.setPadding(new Insets(20, 150, 10, 10));
 
 // Add address fields
-        TextField fullNameField = new TextField();
+        TextField fullNameField = new TextField(existingAddress != null ? existingAddress.getFullName() : "");
         fullNameField.setPromptText("Full Name");
 
-        TextField addressField = new TextField();
+        TextField addressField = new TextField(existingAddress != null ? existingAddress.getStreetAddress() : "");
         addressField.setPromptText("Street Address");
 
-        TextField cityField = new TextField();
+        TextField cityField = new TextField(existingAddress != null ? existingAddress.getCity() : "");
         cityField.setPromptText("City");
 
-        TextField stateField = new TextField();
+        TextField stateField = new TextField(existingAddress != null ? existingAddress.getState() : "");
         stateField.setPromptText("State");
 
-        TextField zipCodeField = new TextField();
+        TextField zipCodeField = new TextField(existingAddress != null ? existingAddress.getZipCode() : "");
         zipCodeField.setPromptText("ZIP Code");
 
         ComboBox<String> addressTypeComboBox = new ComboBox<>();
         addressTypeComboBox.getItems().addAll("Home", "Work", "Other");
+        addressTypeComboBox.setValue(existingAddress != null ? existingAddress.getAddressType() : null);
         addressTypeComboBox.setPromptText("Address Type");
 
 

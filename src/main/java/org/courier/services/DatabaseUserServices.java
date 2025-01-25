@@ -1,6 +1,7 @@
 package org.courier.services;
 
 import javafx.scene.control.Alert;
+import org.courier.models.Address;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -193,6 +194,11 @@ public class DatabaseUserServices {
             return false;
         }
     }
+
+
+
+
+    /*Get user id from the database*/
     public int getUserId(String email) {
         String query = "SELECT user_id FROM users WHERE email = ?";
         int userId = -1;
@@ -240,6 +246,32 @@ public class DatabaseUserServices {
             return "Error retrieving address.";
         }
     }
+
+
+    public Address fetchUserPromptAddress(int userId) {
+        String query = "SELECT full_name, street_address, city, state, zip_code, address_type FROM User_Addresses WHERE user_id = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new Address(
+                        rs.getString("full_name"),
+                        rs.getString("street_address"),
+                        rs.getString("city"),
+                        rs.getString("state"),
+                        rs.getString("zip_code"),
+                        rs.getString("address_type")
+                );
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DatabaseUserServices.class.getName()).log(Level.SEVERE, "Failed to fetch address", e);
+        }
+        return null;
+    }
+
 
     public boolean saveMessage(String name, String email, String message) {
         String query = "INSERT INTO ContactMessages (name, email, message, created_at) VALUES (?, ?, ?, datetime('now'))";

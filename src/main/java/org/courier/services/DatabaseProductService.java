@@ -198,6 +198,24 @@ public class DatabaseProductService {
             return false;
         }
     }
+    /**
+     * Increase the quantity of a product in the cart by 1.
+     *
+     * @param productId The ID of the product whose quantity is to be increased.
+     * @return true if the quantity was successfully increased, false otherwise.
+     */
+    public boolean increaseQuantityInCart(int productId) {
+        String query = "UPDATE cart SET quantity = quantity + 1 WHERE product_id = ?";
+        try (Connection connection = DriverManager.getConnection(DB_URL);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, productId);
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.err.println("Error reducing quantity in cart: " + e.getMessage());
+            return false;
+        }
+    }
 
     /*
     Check if the cart is empty

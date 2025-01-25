@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.util.Duration;
 import org.courier.services.DatabaseUserServices;
 import org.courier.utils.SetNameEmail;
+import org.courier.utils.UserAddress;
 
 import java.io.File;
 import java.security.MessageDigest;
@@ -16,10 +17,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class SignUpController {
 
     DatabaseUserServices databaseUserServices = new DatabaseUserServices();
+    UserAddress userAddress = new UserAddress();
 
     @FXML
     private TextField txtEmail;
@@ -111,6 +114,7 @@ public class SignUpController {
             setName.setUserName(username);
             setName.setEmail(email);
             String userName = SetNameEmail.getUserName();
+            userAddress.DeliveryAddress(); // prompt the user to enter their delivery address
 
             redirectToHomePage(userName);
         } else {

@@ -127,7 +127,11 @@ public class CartPageController {
         styleActionButton(reduceQuantityButton, "#FFD700");
         reduceQuantityButton.setOnAction(e -> handleReduceQuantity(item));
 
-        HBox actions = new HBox(10, reduceQuantityButton, removeButton);
+        Button increaseQuantityButton = new Button("+");
+        styleActionButton(increaseQuantityButton, "#FFD700");
+        increaseQuantityButton.setOnAction(e -> handleIncreaseQuantity(item));
+
+        HBox actions = new HBox(10, reduceQuantityButton, increaseQuantityButton, removeButton);
         actions.setAlignment(Pos.CENTER);
         actions.setPrefWidth(150);
 
@@ -167,6 +171,15 @@ public class CartPageController {
         }
     }
 
+    private void handleIncreaseQuantity(CartItem item) {
+        if (databaseService.increaseQuantityInCart(item.getProductId())) {
+            loadCartItems();
+        } else {
+            showAlert("Failed to increase quantity. Try again.");
+        }
+
+    }
+
     @FXML
     private void handlePayNow() {
         // Check if the cart is empty
@@ -178,8 +191,8 @@ public class CartPageController {
                 databaseService.clearCart();
                 showAlert("Payment successful! Thank you for your purchase.");
                 loadCartItems();
-                userAddress.DeliveryAddress();
-                showAlert("You can later on update your delivery address in your dashboard.");
+//                userAddress.DeliveryAddress();
+//                showAlert("You can later on update your delivery address in your dashboard.");
                 showAlert("You can now go to your dashboard to view your orders, update your delivery address and track your orders.");
 
             } else {

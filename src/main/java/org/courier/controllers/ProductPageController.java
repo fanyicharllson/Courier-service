@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import org.courier.models.Product;
 import org.courier.services.DatabaseProductService;
 import org.courier.utils.ContactForm;
+import org.courier.utils.UserAddress;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,6 +29,7 @@ public class ProductPageController {
 
     private final DatabaseProductService databaseService = new DatabaseProductService();
     private final ContactForm contactForm = new ContactForm();
+
 
     /**
      * Initialize the Products Page Controller

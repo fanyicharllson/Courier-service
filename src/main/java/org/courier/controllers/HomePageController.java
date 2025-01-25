@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.courier.utils.ContactForm;
+import org.courier.utils.UserAddress;
 
 public class HomePageController {
 
@@ -105,7 +106,7 @@ public class HomePageController {
      */
     @FXML
     public void initialize() {
-        System.out.println("HomePageController initialized.");
+        System.out.println("Initializing HomePageController...");
     }
 
     public void handleContactUs() {
